@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Image slider</title>
+		<script type="text/javascript" src="jquery.js"></script>
+		<style type="text/css">
+			body{
+				text-align:center;
+				background:#dddddd;
+				color:#2c2c2c;
+				font-family: sans-serif;
+			}
+			.invisible{
+				display:none;
+			}
+			.titleString{
+				display:none;
+			}
+			img{
+				width:60%;
+			}
+		</style>
+		<script type="text/javascript">
+			$(document).ready(function(){
+
+				(function(){
+					var i = 2;
+					var numberOfImages = 5;
+					var intervalTime = 5000;
+
+					setTimeout(function(){
+						$('.titleString').fadeIn();
+					},500);
+
+					setTimeout(function(){
+						$('.imageBox1').fadeIn();
+					},1000);
+
+					var fadeOutAll = function(){
+						for (var j = 1; j <= numberOfImages; j++) {
+							console.log("fade"+j);
+							$('.imageBox'+j).fadeOut();
+						};
+					};
+					
+					var fadeInImage = function(){
+						fadeOutAll();
+						if(i <= numberOfImages){
+							console.log("if"+i);
+							setTimeout(function(){
+								$('.imageBox'+i).fadeIn();
+								i++;
+							},500);
+						}else{
+							console.log("else"+i);
+							setTimeout(function(){
+								i=2;
+								$('.imageBox1').fadeIn();
+							},500);
+						}
+					};
+
+					setInterval(function(){
+						fadeInImage();
+					},intervalTime);
+
+				})();
+			});
+		</script>
+	</head>
+	<body>
+		<h2 class="titleString">My favorite tourist spots!</h2>
+		<div class="imagesContainer">
+		    <div class="imageBox1 invisible">
+		        <h3>Paris - Eiffel Tower</h3>    
+		        <img src="images/1.jpg"/>
+		    </div>
+		    <div class="imageBox2 invisible">
+		        <h3>Washington DC - The White House</h3>    
+		        <img src="images/2.jpg"/>
+		    </div>
+		    <div class="imageBox3 invisible">
+		        <h3>Agra - Taj Mahal</h3>    
+		        <img src="images/3.jpg"/>
+		    </div>
+		    <div class="imageBox4 invisible">
+		        <h3>China - The great wall of China</h3>    
+		        <img src="images/4.jpg"/>
+		    </div>
+		    <div class="imageBox5 invisible">
+		        <h3>Rio de Janeiro - Christ Statue</h3>    
+		        <img src="images/5.jpg"/>
+		    </div>
+		</div>
+	</body>
+</html>
